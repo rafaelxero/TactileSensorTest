@@ -29,18 +29,20 @@ items:
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "${PROJECT_DIR}/../../../models/Miscellaneous/SimpleFoot.wrl"
+            modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/Miscellaneous/SimpleFoot.wrl"
             currentBaseLink: "LLEG_ANKLE_R"
             rootPosition: [ 0, 0, 0.055 ]
             rootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
               0, 0, 1 ]
+            jointPositions: [  ]
             initialRootPosition: [ 0, 0, 0.055 ]
             initialRootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
               0, 0, 1 ]
+            zmp: [ 0, 0, 0 ]
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
@@ -53,6 +55,7 @@ items:
               data: 
                 isNoDelayMode: true
                 controllerOptions: ""
+                moduleName: ""
                 confFileName: "${PROJECT_DIR}/Virtual-SimpleFoot.conf"
                 configurationMode: "Use Configuration File"
                 autoConnect: true
@@ -61,19 +64,19 @@ items:
                 baseDirectory: "RTC directory"
         - 
           id: 5
-          name: "floor"
+          name: "Cobblestones"
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "${MODEL}/floor.wrl"
+            modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/NarrowSurfaces/Cobblestones3.wrl"
             currentBaseLink: ""
-            rootPosition: [ 0, 0, -0.1 ]
+            rootPosition: [ 0.25, -0.3, -0.142 ]
             rootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
               0, 0, 1 ]
             jointPositions: [  ]
-            initialRootPosition: [ 0, 0, -0.1 ]
+            initialRootPosition: [ 0, 0, -0.142 ]
             initialRootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
@@ -130,31 +133,6 @@ items:
             simulationOnly: true
             backgroundExecution: true
             file: "${PROJECT_DIR}/TactileSensorTest.py"
-        - 
-          id: 9
-          name: "debris_4x4x24"
-          plugin: Body
-          class: BodyItem
-          data: 
-            modelFile: "${PROJECT_DIR}/../../../models/DRC-Debris/DRCtrial_debris_4x4x24.wrl"
-            currentBaseLink: "WAIST"
-            rootPosition: [ 0.3, 0, 0.05 ]
-            rootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
-            jointPositions: [  ]
-            initialRootPosition: [ 0.3, 0, 0.05 ]
-            initialRootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
-            initialRootLinVelocity: [ 0, 0, 0 ]
-            initialRootAngVelocity: [ 0, 0, 0 ]
-            zmp: [ 0, 0, 0 ]
-            collisionDetection: true
-            selfCollisionDetection: false
-            isEditable: true
 views: 
   - 
     id: 0
@@ -168,7 +146,7 @@ views:
     mounted: true
     state: 
       selected: [ 3 ]
-      checked: [ 1, 2, 3, 4, 5, 8, 9 ]
+      checked: [ 1, 2, 3, 4, 5, 8 ]
       expanded: [ 2, 3, 6 ]
   - 
     id: 2
@@ -230,7 +208,7 @@ views:
     class: SceneView
     mounted: true
     state: 
-      editMode: false
+      editMode: true
       viewpointControlMode: thirdPerson
       collisionLines: true
       polygonMode: fill
@@ -269,9 +247,9 @@ views:
           fieldOfView: 0.6978
           near: 0.01
           far: 10000
-          eye: [ 0.775001571, 2.60403559, 1.40360854 ]
-          direction: [ -0.25015438, -0.951260739, -0.180349085 ]
-          up: [ -0.0458672143, -0.17441901, 0.983602668 ]
+          eye: [ 0.0849427419, 1.53659505, 0.362022907 ]
+          direction: [ -0.0393432534, -0.983056724, -0.179029569 ]
+          up: [ -0.00715927312, -0.178886365, 0.983843694 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -370,7 +348,7 @@ views:
           id: 3
           selectedLinks: [ 0 ]
         - 
-          id: 9
+          id: 5
           selectedLinks: [ 0 ]
   - 
     id: 15
@@ -467,11 +445,6 @@ Body:
         showZmp: false
       - 
         bodyItem: 5
-        showCenterOfMass: false
-        showPpcom: false
-        showZmp: false
-      - 
-        bodyItem: 9
         showCenterOfMass: false
         showPpcom: false
         showZmp: false
