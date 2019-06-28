@@ -43,7 +43,7 @@ def connectComps():
 
 def activateComps():
 
-    rtm.serializeComponents([rh, tp])
+    rtm.serializeComponents([rh, tp, log])
 
     rh.start()
     tp.start()
@@ -56,8 +56,6 @@ def setupLogger():
 
     connectPorts(rh.port("tactileInfoRawOut"),  log.port("tactileInfoRaw"))
     connectPorts(tp.port("tactileInfoProcOut"), log.port("tactileInfoProc"))
-
-def saveLog
     
 def init():
     
