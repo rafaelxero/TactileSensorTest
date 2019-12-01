@@ -29,15 +29,15 @@ items:
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/Miscellaneous/SimpleFoot.wrl"
+            modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/Miscellaneous/HRP5P-Foot.wrl"
             currentBaseLink: "LLEG_ANKLE_R"
-            rootPosition: [ 0, 0, 0.055 ]
+            rootPosition: [ 0, 0, 0.105 ]
             rootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
               0, 0, 1 ]
             jointPositions: [  ]
-            initialRootPosition: [ 0, 0, 0.055 ]
+            initialRootPosition: [ 0, 0, 0.105 ]
             initialRootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
@@ -76,7 +76,7 @@ items:
               0, 1, 0, 
               0, 0, 1 ]
             jointPositions: [  ]
-            initialRootPosition: [ 0, 0, -0.142 ]
+            initialRootPosition: [ 0.25, -0.3, -0.142 ]
             initialRootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
