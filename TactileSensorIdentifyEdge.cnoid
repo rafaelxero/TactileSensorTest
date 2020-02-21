@@ -21,7 +21,7 @@ items:
       data: 
         collisionDetection: true
         collisionDetector: AISTCollisionDetector
-        materialTableFile: "${SHARE}/default/materials.yaml"
+        materialTableFile: "/home/rcisneros/openrtp/bin/../share/choreonoid-1.8/default/materials.yaml"
       children: 
         - 
           id: 3
@@ -30,18 +30,18 @@ items:
           class: BodyItem
           data: 
             modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/Miscellaneous/HRP5P-Foot.wrl"
-            currentBaseLink: "LLEG_ANKLE_R"
-            rootPosition: [ 0, 0, 0.105 ]
+            currentBaseLink: ""
+            rootPosition: [ 0.34, 0, 0.28 ]
             rootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
+              0.984808, -0.173648, 0, 
+              0.173648,  0.984808, 0, 
+              0,         0,        1 ]
             jointPositions: [  ]
-            initialRootPosition: [ 0, 0, 0.105 ]
+            initialRootPosition: [ 0.34, 0, 0.28 ]
             initialRootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
+              0.984808, -0.173648, 0, 
+              0.173648,  0.984808, 0, 
+              0,         0,        1 ]
             zmp: [ 0, 0, 0 ]
             collisionDetection: true
             selfCollisionDetection: false
@@ -64,19 +64,19 @@ items:
                 baseDirectory: "RTC directory"
         - 
           id: 5
-          name: "Cobblestones"
+          name: "floor"
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "/home/rcisneros/src/rcisneros/hrg/projects/choreonoid/TactileSensorTest/../../../models/NarrowSurfaces/Cobblestones3.wrl"
+            modelFile: "${MODEL}/floor.wrl"
             currentBaseLink: ""
-            rootPosition: [ 0.25, -0.3, -0.142 ]
+            rootPosition: [ 0, 0, -0.1 ]
             rootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
               0, 0, 1 ]
             jointPositions: [  ]
-            initialRootPosition: [ 0.25, -0.3, -0.142 ]
+            initialRootPosition: [ 0, 0, -0.1 ]
             initialRootAttitude: [ 
               1, 0, 0, 
               0, 1, 0, 
@@ -87,6 +87,29 @@ items:
             isEditable: true
         - 
           id: 6
+          name: "Ladder"
+          plugin: Body
+          class: BodyItem
+          data: 
+            modelFile: "/home/rcisneros/src/rcisneros/hrg/models/NarrowSurfaces/Ladder.wrl"
+            currentBaseLink: "Root"
+            rootPosition: [ 0.7, 0.725, 0 ]
+            rootAttitude: [ 
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
+            jointPositions: [  ]
+            initialRootPosition: [ 0.7, 0.725, 0 ]
+            initialRootAttitude: [ 
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
+            zmp: [ 0, 0, 0 ]
+            collisionDetection: true
+            selfCollisionDetection: false
+            isEditable: false
+        - 
+          id: 7
           name: "AISTSimulator"
           plugin: Body
           class: AISTSimulatorItem
@@ -116,15 +139,15 @@ items:
             oldAccelSensorMode: false
           children: 
             - 
-              id: 7
+              id: 8
               name: "ContactForceExtractor"
               plugin: ContactForceExtractionSample
               class: ContactForceExtractorItem
               data: 
                 enabled: true
         - 
-          id: 8
-          name: "TactileSensorTest.py"
+          id: 9
+          name: "TactileSensorIdentifyEdge.py"
           plugin: PythonSimScript
           class: PythonSimScriptItem
           data: 
@@ -132,7 +155,7 @@ items:
             delay: 0
             simulationOnly: true
             backgroundExecution: true
-            file: "${PROJECT_DIR}/TactileSensorTest.py"
+            file: "${PROJECT_DIR}/TactileSensorIdentifyEdge.py"
 views: 
   - 
     id: 0
@@ -146,8 +169,8 @@ views:
     mounted: true
     state: 
       selected: [ 3 ]
-      checked: [ 1, 2, 3, 4, 5, 8 ]
-      expanded: [ 2, 3, 6 ]
+      checked: [ 1, 2, 3, 4, 5, 6, 9 ]
+      expanded: [ 2, 3, 7 ]
   - 
     id: 2
     plugin: Base
@@ -212,6 +235,8 @@ views:
       viewpointControlMode: thirdPerson
       collisionLines: true
       polygonMode: fill
+      restrictCameraRoll: true
+      verticalAxis: Z
       lightingMode: full
       cullingMode: enabled
       defaultHeadLight: true
@@ -235,10 +260,9 @@ views:
       pointSize: 1
       normalVisualization: false
       normalLength: 0.01
+      lightweightViewChange: false
       coordinateAxes: true
       fpsTestIteration: 1
-      showFPS: false
-      enableNewDisplayListDoubleRendering: false
       upsideDown: false
       cameras: 
         - 
@@ -249,7 +273,7 @@ views:
           far: 10000
           eye: [ 0.0849427419, 1.53659505, 0.362022907 ]
           direction: [ -0.0393432534, -0.983056724, -0.179029569 ]
-          up: [ -0.00715927312, -0.178886365, 0.983843694 ]
+          up: [ -0.0071592731, -0.178886364, 0.983843694 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -288,6 +312,19 @@ views:
     mounted: true
   - 
     id: 10
+    plugin: Body
+    class: JointDisplacementView
+    state: 
+      showSelectedJoints: false
+      showJointIDs: true
+      showJointNames: true
+      overlapJointNames: false
+      showSliders: true
+      showDials: false
+      showPhases: false
+      currentBodyItem: 3
+  - 
+    id: 11
     name: "Joint Trajectories"
     plugin: Body
     class: JointGraphView
@@ -310,20 +347,6 @@ views:
       scrollMode: continuous
       lower: -10
       upper: 10
-  - 
-    id: 11
-    plugin: Body
-    class: JointSliderView
-    state: 
-      showAllJoints: true
-      jointId: true
-      name: true
-      numColumns: 1
-      spinBox: true
-      slider: true
-      dial: false
-      labelOnLeft: true
-      currentBodyItem: 3
   - 
     id: 12
     name: "Joint State"
@@ -399,6 +422,10 @@ toolbars:
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
+  "BodyBar": 
+    current: 3
+  "LeggedBodyBar": 
+    stanceWidth: 0.15
   "KinematicsBar": 
     mode: IK
     enablePositionDragger: true
@@ -407,10 +434,6 @@ toolbars:
     snapDistance: 0.025
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
-  "BodyBar": 
-    current: 3
-  "LeggedBodyBar": 
-    stanceWidth: 0.15
   "BodyMotionGenerationBar": 
     autoGenerationForNewBody: true
     balancer: false
@@ -436,6 +459,9 @@ toolbars:
 Body: 
   "BodyMotionEngine": 
     updateJointVelocities: false
+  "BodySelectionManager": 
+    currentBodyItem: 3
+    currentLink: "LAR"
   "EditableSceneBody": 
     editableSceneBodies: 
       - 
@@ -445,6 +471,11 @@ Body:
         showZmp: false
       - 
         bodyItem: 5
+        showCenterOfMass: false
+        showPpcom: false
+        showZmp: false
+      - 
+        bodyItem: 6
         showCenterOfMass: false
         showPpcom: false
         showZmp: false
@@ -467,7 +498,7 @@ OpenRTM:
   "deleteUnmanagedRTCsOnStartingSimulation": true
 Python: 
   "moduleSearchPath": 
-    - ${PROGRAM_TOP}/lib/python2.7/dist-packages/hrpsys
+    - /home/rcisneros/openrtp/bin/../lib/python2.7/dist-packages/hrpsys
 viewAreas: 
   - 
     type: embedded
