@@ -24,14 +24,14 @@ from cnoid.grxui import *
 
 def createComps():
 
-    global rh, ms, tp, log, log_svc
+    global rh, ms, ted, log, log_svc
 
     rh = rtm.findRTC("SimpleFoot0")
 
     ms = rtm.findRTCmanager()
 
-    ms.load("TactileInfoProcessor")
-    tp = ms.create("TactileInfoProcessor")
+    ms.load("TactileInfoEdgeDetector")
+    ted = ms.create("TactileInfoEdgeDetector")
 
     ms.load("DataLogger")
     log = ms.create("DataLogger", "log")
@@ -39,23 +39,23 @@ def createComps():
 
 def connectComps():
 
-    connectPorts(rh.port("tactileInfoRawOut"), tp.port("tactileInfoRawIn"))
+    connectPorts(rh.port("tactileInfoRawOut"), ted.port("tactileInfoRawIn"))
 
 def activateComps():
 
-    rtm.serializeComponents([rh, tp, log])
+    rtm.serializeComponents([rh, ted, log])
 
     rh.start()
-    tp.start()
+    ted.start()
     log.start()
 
 def setupLogger():
 
     log_svc.add("TimedDoubleSeq", "tactileInfoRaw")
-    log_svc.add("TimedDoubleSeq", "tactileInfoProc")
+    log_svc.add("TimedDoubleSeq", "edge")
 
     connectPorts(rh.port("tactileInfoRawOut"),  log.port("tactileInfoRaw"))
-    connectPorts(tp.port("tactileInfoProcOut"), log.port("tactileInfoProc"))
+    connectPorts(ted.port("edgeOut"), log.port("edge"))
     
 def init():
     

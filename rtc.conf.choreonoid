@@ -10,3 +10,5 @@ manager.is_master: YES
 manager.refstring_path: /tmp/rtcmanager.ref
 manager.modules.load_path: /home/rcisneros/openrtp/lib
 manager.modules.search_auto: NO
+
+example.TactileInfoEdgeDetector.config_file: robot.conf
