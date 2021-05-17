@@ -32,6 +32,8 @@ def createComps():
 
     ms.load("TactileInfoEdgeDetector")
     ted = ms.create("TactileInfoEdgeDetector")
+    ted.setProperty("foot", "left")
+    ted.setProperty("Wdin", "100000")
 
     ms.load("DataLogger")
     log = ms.create("DataLogger", "log")
@@ -53,9 +55,19 @@ def setupLogger():
 
     log_svc.add("TimedDoubleSeq", "tactileInfoRaw")
     log_svc.add("TimedDoubleSeq", "edge")
+    log_svc.add("TimedDoubleSeq", "circle")
+    log_svc.add("TimedDoubleSeq", "contactPoints")
+    log_svc.add("TimedDoubleSeq", "noContactPoints")
+    log_svc.add("TimedDoubleSeq", "elapsedTime")
 
+    log_svc.maxLength(10000)
+    
     connectPorts(rh.port("tactileInfoRawOut"),  log.port("tactileInfoRaw"))
     connectPorts(ted.port("edgeOut"), log.port("edge"))
+    connectPorts(ted.port("circleOut"), log.port("circle"))
+    connectPorts(ted.port("contactPointsOut"), log.port("contactPoints"))
+    connectPorts(ted.port("noContactPointsOut"), log.port("noContactPoints"))
+    connectPorts(ted.port("elapsedTimeOut"), log.port("elapsedTime"))
     
 def init():
     
